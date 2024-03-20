@@ -22,3 +22,27 @@ group by weightgroup
 order by weightgroup desc
 ;
 ```
+## Question 2:
+Show patient_id, weight, height, isObese from the patients table.
+
+Display isObese as a boolean 0 or 1.
+
+Obese is defined as weight(kg)/(height(m)2) >= 30.
+
+weight is in units kg.
+
+height is in units cm.
+
+![alt text](https://masterful-media.com/wp-content/uploads/2024/02/patients-table.png)
+
+## Answer:
+ 
+``` sql
+SELECT patient_id, weight, height,
+(CASE WHEN weight / (power(height/100.0, 2)) >=30 then 
+1 
+else 
+0 END) as isObese
+FROM patients
+;
+```
